@@ -1,5 +1,6 @@
 import streams from '../apis/streams';
 import history from '../history';
+import youtube from '../apis/youtube';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -7,8 +8,11 @@ import {
   FETCH_STREAM,
   FETCH_STREAMS,
   DELETE_STREAM,
-  EDIT_STREAM
+  EDIT_STREAM,
+  FETCH_VIDEO
 } from './types';
+
+const KEY = 'AIzaSyCN6e98GjAfa_d4E4mISSn8uCP6g5b1DvE';
 
 export const signIn = userId => {
   return {
@@ -51,4 +55,18 @@ export const deleteStream = id => async dispatch => {
   await streams.delete(`/streams/${id}`);
   dispatch({ type: DELETE_STREAM, payload: id });
   history.push('/');
+};
+
+export const fetchVideo = term => async dispatch => {
+  const response = await youtube.get('/search', {
+    params: {
+      q: term,
+      part: 'snippet',
+      maxResults: 1,
+      type: 'video',
+      key: KEY
+    }
+  });
+
+  dispatch({ type: FETCH_VIDEO, payload: response.data.items[0] });
 };
