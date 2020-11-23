@@ -42,7 +42,7 @@ export const fetchStreams = () => async dispatch => {
 
 export const fetchStream = id => async dispatch => {
   const response = await streams.get(`/streams/${id}`);
-  dispatch({ type: FETCH_STREAM, payload: response.data });
+  return dispatch({ type: FETCH_STREAM, payload: response.data });
 };
 
 export const editStream = (id, formValues) => async dispatch => {
@@ -67,6 +67,7 @@ export const fetchVideo = term => async dispatch => {
       key: KEY
     }
   });
+  console.log('$$response.data.items[0]', response.data.items[0]);
 
   dispatch({ type: FETCH_VIDEO, payload: response.data.items[0] });
 };

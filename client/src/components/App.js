@@ -20,7 +20,12 @@ const App = () => {
             <Route path='/streams/new' component={StreamCreate} />
             <Route path='/streams/delete/:id' component={StreamDelete} />
             <Route path='/streams/edit/:id' component={StreamEdit} />
-            <Route path='/streams/:id' component={StreamShow} />
+            <Route
+              path='/streams/:id'
+              rendert={props => (
+                <StreamShow id={props.match.params.id} isStreaming={false} />
+              )}
+            />
           </Switch>
         </div>
       </Router>
