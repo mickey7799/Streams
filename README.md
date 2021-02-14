@@ -10,7 +10,7 @@ Stream can let users do vedio streaming using OBS and browse other people's vedi
 
 ### Motivation
 
-The purpose of this project was to get familiar with React, Redux, and React Router. 
+The purpose of this project was to get familiar with Redux and User Authentication. 
 
 ### Getting Started
 
@@ -37,4 +37,6 @@ The purpose of this project was to get familiar with React, Redux, and React Rou
 **2. User can stream their video.**
 
 **3. User can browse other people's video.**
+
+**4. User Authentication. **
 
