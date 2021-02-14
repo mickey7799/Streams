@@ -19,15 +19,21 @@ The purpose of this project was to get familiar with Redux and User Authenticati
 ##### Install dependencies
 
 `cd streams`
+
 `yarn`
 
 ##### Run Stream from the root directory.
 
 `yarn start`
+
 `cd ..`
+
 `cd api`
+
 `npm start`
+
 `cd rtmpserver`
+
 `npm start`
 
 ### Features
