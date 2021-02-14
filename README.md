@@ -6,7 +6,7 @@
 
 ### Overview
 
-Stream can let users do vedio streaming using OBS and browse other people's vedio streams.
+Stream can let users do video streaming using OBS and browse other people's video.
 
 ### Motivation
 
@@ -21,7 +21,7 @@ The purpose of this project was to get familiar with Redux and User Authenticati
 `cd streams`
 `yarn`
 
-##### Run Search Restaurants from the root directory.
+##### Run Stream from the root directory.
 
 `yarn start`
 `cd ..`
@@ -38,5 +38,6 @@ The purpose of this project was to get familiar with Redux and User Authenticati
 
 **3. User can browse other people's video.**
 
-**4. User Authentication. **
+**4. User Authentication**
+
 
