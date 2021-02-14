@@ -1,18 +1,19 @@
 import React from 'react';
 import flv from 'flv.js';
 import { connect } from 'react-redux';
-import { fetchStream, fetchVideo } from '../../actions';
-import StreamDetail from './StreamDetail';
+import { fetchStream } from '../../actions';
 
 class StreamShow extends React.Component {
   constructor(props) {
     super(props);
+
     this.videoRef = React.createRef();
   }
+
   componentDidMount() {
-    this.props.fetchStream(this.props.id).then(() => {
-      this.props.fetchVideo(this.props.stream.title);
-    });
+    const { id } = this.props.match.params;
+
+    this.props.fetchStream(id);
     this.buildPlayer();
   }
 
@@ -28,7 +29,8 @@ class StreamShow extends React.Component {
     if (this.player || !this.props.stream) {
       return;
     }
-    const { id } = this.props;
+
+    const { id } = this.props.match.params;
     this.player = flv.createPlayer({
       type: 'flv',
       url: `http://localhost:8000/live/${id}.flv`
@@ -36,18 +38,17 @@ class StreamShow extends React.Component {
     this.player.attachMediaElement(this.videoRef.current);
     this.player.load();
   }
+
   render() {
     if (!this.props.stream) {
       return <div>Loading...</div>;
     }
+
     const { title, description } = this.props.stream;
+
     return (
       <div>
-        {this.props.isStreaming ? (
-          <video ref={this.videoRef} style={{ width: '100%' }} controls />
-        ) : (
-          <StreamDetail video={this.props.selectedVideo} />
-        )}
+        <video ref={this.videoRef} style={{ width: '100%' }} controls />
         <h1>{title}</h1>
         <h5>{description}</h5>
       </div>
@@ -56,13 +57,10 @@ class StreamShow extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return {
-    stream: state.streams[ownProps.match.params.id],
-    video: state.streams.video
-  };
+  return { stream: state.streams[ownProps.match.params.id] };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchStream, fetchVideo }
+  { fetchStream }
 )(StreamShow);
